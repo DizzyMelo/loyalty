@@ -8,7 +8,7 @@ class ColumnAnimationComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimationLimiter(
-      child: Column(
+      child: ListView(
         children: AnimationConfiguration.toStaggeredList(
             duration: const Duration(milliseconds: 500),
             childAnimationBuilder: (widget) => SlideAnimation(

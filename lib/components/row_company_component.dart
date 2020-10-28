@@ -10,7 +10,7 @@ class RowCompanyComponent extends StatelessWidget {
         Navigator.pushNamed(context, '/detail');
       },
       child: Padding(
-        padding: EdgeInsets.only(bottom: 10),
+        padding: EdgeInsets.all(10),
         child: Material(
           borderRadius: BorderRadius.circular(5),
           elevation: 10,

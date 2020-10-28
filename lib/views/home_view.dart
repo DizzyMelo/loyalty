@@ -27,20 +27,20 @@ class _HomeViewState extends State<HomeView> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/qr_code_scanner');
+                Navigator.pushNamed(context, '/qr_code_generator');
               },
               icon: Icon(Icons.qr_code_rounded),
             )
           ],
         ),
         body: Container(
-            padding: EdgeInsets.all(10),
+            //padding: EdgeInsets.all(10),
             child: ColumnAnimationComponent(widgets: [
-              RowCompanyComponent(),
-              RowCompanyComponent(),
-              RowCompanyComponent(),
-              RowCompanyComponent()
-            ])),
+          RowCompanyComponent(),
+          RowCompanyComponent(),
+          RowCompanyComponent(),
+          RowCompanyComponent()
+        ])),
       ),
     );
   }

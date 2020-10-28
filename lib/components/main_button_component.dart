@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loyalty/components/loading_component.dart';
 import 'package:loyalty/shared/style.dart';
 
 class MainButtonComponent extends StatelessWidget {
@@ -10,6 +11,7 @@ class MainButtonComponent extends StatelessWidget {
       {@required this.title, @required this.function, this.loading});
   @override
   Widget build(BuildContext context) {
+    if (loading) return LoadingComponent();
     return SizedBox(
       height: 42,
       width: double.infinity,

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:loyalty/shared/style.dart';
 import 'package:loyalty/views/detail_view.dart';
 import 'package:loyalty/views/home_view.dart';
 import 'package:loyalty/views/login_view.dart';
+import 'package:loyalty/views/profile_view.dart';
 import 'package:loyalty/views/qr_code_generator_view.dart';
 import 'package:loyalty/views/qr_code_scanner_view.dart';
 import 'package:loyalty/views/signup_view.dart';
+import 'package:loyalty/views/tabs_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -49,6 +50,14 @@ class MyApp extends StatelessWidget {
 
           case '/detail':
             return MaterialPageRoute(builder: (context) => DetailView());
+            break;
+
+          case '/tabs':
+            return MaterialPageRoute(builder: (context) => TabsView());
+            break;
+
+          case '/profile':
+            return MaterialPageRoute(builder: (context) => ProfileView());
             break;
 
           default:

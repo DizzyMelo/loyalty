@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:loyalty/components/main_button_component.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class SignupView extends StatefulWidget {
   @override
@@ -67,12 +68,27 @@ class _SignupViewState extends State<SignupView> {
                       )),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 20,
+                ),
+                Center(
+                  child: ToggleSwitch(
+                    initialLabelIndex: 0,
+                    minWidth: double.infinity,
+                    cornerRadius: 5,
+                    inactiveBgColor: Colors.grey[300],
+                    labels: ['Customer', 'Business'],
+                    onToggle: (index) {
+                      print('switched to: $index');
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 MainButtonComponent(
                     title: 'Signup',
                     function: () {
-                      Navigator.pushNamed(context, '/home');
+                      Navigator.pushNamed(context, '/tabs');
                     },
                     loading: false),
               ],

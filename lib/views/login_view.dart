@@ -9,6 +9,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  bool loading = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,10 +54,18 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 MainButtonComponent(
                     title: 'Log in',
-                    function: () {
-                      Navigator.pushNamed(context, '/home');
+                    function: () async {
+                      setState(() {
+                        loading = true;
+                      });
+                      await Future.delayed(Duration(seconds: 2));
+                      setState(() {
+                        loading = false;
+                      });
+                      await Future.delayed(Duration(seconds: 1));
+                      Navigator.pushNamed(context, '/tabs');
                     },
-                    loading: false),
+                    loading: loading),
                 FlatButton(
                   onPressed: () {},
                   child: Text(
