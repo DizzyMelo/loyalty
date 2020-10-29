@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:loyalty/shared/style.dart';
 import 'package:loyalty/views/detail_view.dart';
 import 'package:loyalty/views/home_view.dart';
@@ -9,7 +10,8 @@ import 'package:loyalty/views/qr_code_scanner_view.dart';
 import 'package:loyalty/views/signup_view.dart';
 import 'package:loyalty/views/tabs_view.dart';
 
-void main() {
+void main() async {
+  await DotEnv().load('.env');
   runApp(MyApp());
 }
 

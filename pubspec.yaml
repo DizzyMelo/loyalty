@@ -24,16 +24,17 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.0
+  dio: ^3.0.10
+  flutter_dotenv: ^2.1.0
+  flutter_staggered_animations: ^0.1.2
   google_fonts: ^1.1.1
+  jwt_decoder: ^1.0.1
   line_icons: ^0.2.0
   percent_indicator: ^2.1.8
-  flutter_staggered_animations: ^0.1.2
   pretty_qr_code: ^1.0.1
   qr_code_scanner: ^0.0.13
-  toggle_switch: ^0.1.8
   salomon_bottom_bar: ^2.0.0
-  jwt_decoder: ^1.0.1
-  flutter_dotenv: ^2.1.0
+  toggle_switch: ^0.1.8
 
 dev_dependencies:
   flutter_test:
