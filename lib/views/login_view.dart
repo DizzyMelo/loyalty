@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:loyalty/components/main_button_component.dart';
 import 'package:loyalty/controllers/auth_controller.dart';
@@ -12,7 +13,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   TextEditingController ctrEmail =
       TextEditingController(text: "daniel@gmail.com");
-  TextEditingController ctrPassword = TextEditingController(text: "123456");
+  TextEditingController ctrPassword = TextEditingController(text: "1234567");
   AuthController controller = AuthController();
   bool loading = false;
 
@@ -30,9 +31,12 @@ class _LoginViewState extends State<LoginView> {
                   height: 30,
                 ),
                 Center(
-                  child: Image.asset(
-                    'assets/logo.png',
-                    height: 80,
+                  child: Hero(
+                    tag: 'logo',
+                    child: Image.asset(
+                      'assets/logo.png',
+                      height: 80,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -47,27 +51,32 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(
                   height: 10,
                 ),
-                TextField(
-                  controller: ctrPassword,
-                  decoration: InputDecoration(
-                      labelText: 'Password',
-                      prefixIcon: Icon(LineIcons.lock),
-                      suffixIcon: IconButton(
-                        onPressed: () {},
-                        icon: Icon(LineIcons.eye),
-                      )),
-                ),
+                Observer(
+                    builder: (_) => TextField(
+                          controller: ctrPassword,
+                          obscureText: controller.obscure,
+                          decoration: InputDecoration(
+                              labelText: 'Password',
+                              prefixIcon: Icon(LineIcons.lock),
+                              suffixIcon: IconButton(
+                                onPressed: controller.changeObscure,
+                                icon: Icon(controller.obscure
+                                    ? LineIcons.eye
+                                    : LineIcons.eye_slash),
+                              )),
+                        )),
                 SizedBox(
                   height: 10,
                 ),
-                MainButtonComponent(
-                    title: 'Log in',
-                    function: () async {
-                      controller.login(ctrEmail.text, ctrPassword.text);
-                      // await Future.delayed(Duration(seconds: 1));
-                      // Navigator.pushNamed(context, '/tabs');
-                    },
-                    loading: loading),
+                Observer(
+                  builder: (_) => MainButtonComponent(
+                      title: 'Log in',
+                      function: () async {
+                        controller.login(
+                            ctrEmail.text, ctrPassword.text, context);
+                      },
+                      loading: controller.loading),
+                ),
                 FlatButton(
                   onPressed: () {},
                   child: Text(

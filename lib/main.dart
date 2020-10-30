@@ -8,6 +8,7 @@ import 'package:loyalty/views/profile_view.dart';
 import 'package:loyalty/views/qr_code_generator_view.dart';
 import 'package:loyalty/views/qr_code_scanner_view.dart';
 import 'package:loyalty/views/signup_view.dart';
+import 'package:loyalty/views/splash_view.dart';
 import 'package:loyalty/views/tabs_view.dart';
 
 void main() async {
@@ -26,9 +27,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Style.themeColor,
         //textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
       ),
-      initialRoute: '/login',
+      initialRoute: '/splash',
       onGenerateRoute: (settings) {
         switch (settings.name) {
+          case '/splash':
+            return MaterialPageRoute(builder: (context) => SplashView());
+            break;
+
           case '/login':
             return MaterialPageRoute(builder: (context) => LoginView());
             break;
