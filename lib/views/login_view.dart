@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:loyalty/components/main_button_component.dart';
+import 'package:loyalty/controllers/auth_controller.dart';
 import 'package:loyalty/shared/style.dart';
 
 class LoginView extends StatefulWidget {
@@ -9,7 +10,12 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  TextEditingController ctrEmail =
+      TextEditingController(text: "daniel@gmail.com");
+  TextEditingController ctrPassword = TextEditingController(text: "123456");
+  AuthController controller = AuthController();
   bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,6 +39,7 @@ class _LoginViewState extends State<LoginView> {
                   height: 10,
                 ),
                 TextField(
+                  controller: ctrEmail,
                   decoration: InputDecoration(
                       labelText: 'Email',
                       prefixIcon: Icon(LineIcons.envelope_o)),
@@ -41,6 +48,7 @@ class _LoginViewState extends State<LoginView> {
                   height: 10,
                 ),
                 TextField(
+                  controller: ctrPassword,
                   decoration: InputDecoration(
                       labelText: 'Password',
                       prefixIcon: Icon(LineIcons.lock),
@@ -55,15 +63,9 @@ class _LoginViewState extends State<LoginView> {
                 MainButtonComponent(
                     title: 'Log in',
                     function: () async {
-                      setState(() {
-                        loading = true;
-                      });
-                      await Future.delayed(Duration(seconds: 2));
-                      setState(() {
-                        loading = false;
-                      });
-                      await Future.delayed(Duration(seconds: 1));
-                      Navigator.pushNamed(context, '/tabs');
+                      controller.login(ctrEmail.text, ctrPassword.text);
+                      // await Future.delayed(Duration(seconds: 1));
+                      // Navigator.pushNamed(context, '/tabs');
                     },
                     loading: loading),
                 FlatButton(

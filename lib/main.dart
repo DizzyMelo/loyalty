@@ -11,7 +11,7 @@ import 'package:loyalty/views/signup_view.dart';
 import 'package:loyalty/views/tabs_view.dart';
 
 void main() async {
-  await DotEnv().load('.env');
+  await DotEnv().load('config.env');
   runApp(MyApp());
 }
 
