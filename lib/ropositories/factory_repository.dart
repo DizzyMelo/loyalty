@@ -1,16 +1,22 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class AuthenticationRepository {
+class FactoryRepository {
   Dio dio;
-  String url = "${DotEnv().env['BASE_URL']}/users";
-  AuthenticationRepository() {
+  String source;
+  String url;
+
+  FactoryRepository(String source) {
+    this.source = source;
+    url = "${DotEnv().env['BASE_URL']}/$source";
     dio = Dio();
   }
 
-  Future<dynamic> login(Map<String, dynamic> data) async {
+  Future<dynamic> getAll(String params) async {
+    print(url);
     try {
-      var response = await dio.post("$url/login", data: data);
+      var response = await dio.get(url);
+      //print(response.data);
       return response.data;
     } catch (e) {
       return null;

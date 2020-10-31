@@ -35,6 +35,30 @@ abstract class AuthControllerBase with Store {
     }
   }
 
+  signup(name, email, role, password, context) async {
+    loading = true;
+    final prefs = await SharedPreferences.getInstance();
+    Map<String, dynamic> data = {
+      "name": name,
+      "email": email,
+      "role": role,
+      "password": password,
+      "passwordConfirm": password
+    };
+    dynamic res = await auth.signup(data);
+    loading = false;
+    if (res == null) {
+      Utils.showMessage('User not found!', context);
+      return;
+    }
+    if (res['token'] != null && res['token'].toString().isNotEmpty) {
+      prefs.setString('token', res['token']);
+      Navigator.pushNamedAndRemoveUntil(context, '/tabs', (route) => false);
+    } else {
+      Utils.showMessage('Something went wrong when adding the user!', context);
+    }
+  }
+
   @action
   changeObscure() => obscure = !obscure;
 }

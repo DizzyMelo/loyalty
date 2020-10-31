@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:loyalty/components/main_button_component.dart';
+import 'package:loyalty/controllers/auth_controller.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class SignupView extends StatefulWidget {
@@ -9,6 +11,14 @@ class SignupView extends StatefulWidget {
 }
 
 class _SignupViewState extends State<SignupView> {
+  TextEditingController ctrName = TextEditingController(text: "Daniel Melo");
+  TextEditingController ctrEmail =
+      TextEditingController(text: "daniel@gmail.com");
+  TextEditingController ctrPassword = TextEditingController(text: "1234567");
+
+  int roleIndex = 0;
+
+  AuthController controller = AuthController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -44,6 +54,7 @@ class _SignupViewState extends State<SignupView> {
                   height: 10,
                 ),
                 TextField(
+                  controller: ctrName,
                   decoration: InputDecoration(
                       labelText: 'Name', prefixIcon: Icon(LineIcons.user)),
                 ),
@@ -51,6 +62,7 @@ class _SignupViewState extends State<SignupView> {
                   height: 10,
                 ),
                 TextField(
+                  controller: ctrEmail,
                   decoration: InputDecoration(
                       labelText: 'Email',
                       prefixIcon: Icon(LineIcons.envelope_o)),
@@ -58,14 +70,21 @@ class _SignupViewState extends State<SignupView> {
                 SizedBox(
                   height: 10,
                 ),
-                TextField(
-                  decoration: InputDecoration(
+                Observer(
+                  builder: (_) => TextField(
+                    controller: ctrPassword,
+                    obscureText: controller.obscure,
+                    decoration: InputDecoration(
                       labelText: 'Password',
                       prefixIcon: Icon(LineIcons.lock),
                       suffixIcon: IconButton(
-                        onPressed: () {},
-                        icon: Icon(LineIcons.eye),
-                      )),
+                        onPressed: controller.changeObscure,
+                        icon: Icon(controller.obscure
+                            ? LineIcons.eye
+                            : LineIcons.eye_slash),
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 20,
@@ -78,19 +97,26 @@ class _SignupViewState extends State<SignupView> {
                     inactiveBgColor: Colors.grey[300],
                     labels: ['Customer', 'Business'],
                     onToggle: (index) {
-                      print('switched to: $index');
+                      roleIndex = index;
                     },
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                MainButtonComponent(
-                    title: 'Signup',
-                    function: () {
-                      Navigator.pushNamed(context, '/tabs');
-                    },
-                    loading: false),
+                Observer(
+                  builder: (_) => MainButtonComponent(
+                      title: 'Signup',
+                      function: () {
+                        controller.signup(
+                            ctrName.text,
+                            ctrEmail.text,
+                            roleIndex == 0 ? 'user' : 'company',
+                            ctrPassword.text,
+                            context);
+                      },
+                      loading: controller.loading),
+                ),
               ],
             ),
           ),

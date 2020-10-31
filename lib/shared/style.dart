@@ -15,6 +15,7 @@ class Style {
   };
 
   static MaterialColor themeColor = MaterialColor(0xFFFFCC00, colorCodes);
+  static Color secondaryColor = Color.fromRGBO(0, 51, 77, 1);
 
   static TextStyle largeText = TextStyle(color: Colors.grey[900], fontSize: 18);
   static TextStyle mediumText =
