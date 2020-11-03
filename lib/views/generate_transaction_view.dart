@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:loyalty/components/column_animation_component.dart';
 import 'package:loyalty/components/default_textfield_component.dart';
 import 'package:loyalty/components/main_button_component.dart';
+import 'package:loyalty/components/row_company_component.dart';
 import 'package:loyalty/controllers/transaction_controller.dart';
+import 'package:loyalty/controllers/user_controller.dart';
 
 class GenerateTransactionView extends StatelessWidget {
+  final UserController _userController = UserController();
+  final TransactionController _transactionController = TransactionController();
+  TextEditingController ctrEmail =
+      TextEditingController(text: 'daniel@gmail.com');
   @override
   Widget build(BuildContext context) {
-    TransactionController controller = TransactionController();
-    TextEditingController ctrEmail = TextEditingController();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -23,7 +29,30 @@ class GenerateTransactionView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               DefaultTextfieldComponent(
-                  controller: ctrEmail, icon: LineIcons.envelope_o),
+                controller: ctrEmail,
+                icon: LineIcons.envelope_o,
+                showFunctionIcon: true,
+                iconFunction: LineIcons.search,
+                sendOnSubmit: false,
+                function: search,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                child: Observer(builder: (_) {
+                  return ColumnAnimationComponent(
+                    widgets: List<dynamic>.from(
+                            _userController.users['data']['data'])
+                        .map(
+                          (element) => ListTile(
+                            title: Text(element['name']),
+                          ),
+                        )
+                        .toList(),
+                  );
+                }),
+              ),
               SizedBox(
                 height: 10,
               ),
@@ -35,7 +64,7 @@ class GenerateTransactionView extends StatelessWidget {
                     "company": "5f9330cf1daf88096801b5c4"
                   };
 
-                  controller.generate(data, context);
+                  _transactionController.generate(data, context);
                 },
                 loading: false,
               )
@@ -44,5 +73,9 @@ class GenerateTransactionView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void search() {
+    _userController.getUsers('?email=${ctrEmail.text}', null);
   }
 }
