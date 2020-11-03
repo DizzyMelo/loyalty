@@ -8,7 +8,7 @@ class MainButtonComponent extends StatelessWidget {
   final bool loading;
 
   MainButtonComponent(
-      {@required this.title, @required this.function, this.loading});
+      {@required this.title, @required this.function, @required this.loading});
   @override
   Widget build(BuildContext context) {
     if (loading) return LoadingComponent();

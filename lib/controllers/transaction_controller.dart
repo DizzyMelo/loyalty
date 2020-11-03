@@ -28,4 +28,10 @@ abstract class TransactionControllerBase with Store {
     }
     return transactions;
   }
+
+  generate(data, context) async {
+    var res = await repo.generateTransaction(data);
+    print(res);
+    return res;
+  }
 }

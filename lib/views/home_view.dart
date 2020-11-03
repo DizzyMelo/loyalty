@@ -40,32 +40,23 @@ class _HomeViewState extends State<HomeView> {
         ),
         body: Container(
           padding: EdgeInsets.all(10),
-          child: Observer(
-            builder: (_) => ColumnAnimationComponent(
+          child: Observer(builder: (_) {
+            return ColumnAnimationComponent(
               widgets:
                   List<dynamic>.from(_controller.transactions['data']['data'])
                       .map((element) => RowCompanyComponent())
                       .toList(),
-            ),
-          ),
+            );
+          }),
         ),
       ),
     );
-  }
-
-  getTransactions() async {
-    dynamic v = await _controller.getTransactions(context);
-    print(v['data']);
-    print(v['data']['data']);
-    print(v['data']['data'].length);
-
-    v['data']['data'].forEach((el) => print(el));
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    this.getTransactions();
+    _controller.getTransactions(context);
   }
 }

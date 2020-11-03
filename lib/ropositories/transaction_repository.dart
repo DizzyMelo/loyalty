@@ -9,4 +9,8 @@ class TransactionRepository {
   getTransactions(String params) {
     return _factory.getAll(params);
   }
+
+  generateTransaction(data) {
+    return _factory.create(data);
+  }
 }
