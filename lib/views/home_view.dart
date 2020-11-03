@@ -32,9 +32,9 @@ class _HomeViewState extends State<HomeView> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/qr_code_generator');
+                Navigator.pushNamed(context, '/select_user');
               },
-              icon: Icon(Icons.qr_code_rounded),
+              icon: Icon(Icons.add),
             )
           ],
         ),

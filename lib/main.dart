@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:loyalty/shared/style.dart';
 import 'package:loyalty/views/detail_view.dart';
 import 'package:loyalty/views/generate_transaction_view.dart';
+import 'package:loyalty/views/select_user_view.dart';
 import 'package:loyalty/views/home_view.dart';
 import 'package:loyalty/views/login_view.dart';
 import 'package:loyalty/views/profile_view.dart';
@@ -11,6 +12,7 @@ import 'package:loyalty/views/qr_code_scanner_view.dart';
 import 'package:loyalty/views/signup_view.dart';
 import 'package:loyalty/views/splash_view.dart';
 import 'package:loyalty/views/tabs_view.dart';
+import 'package:loyalty/views/transaction_confirmation_view.dart';
 
 void main() async {
   await DotEnv().load('config.env');
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Style.themeColor,
         //textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
       ),
-      initialRoute: '/generate_transaction',
+      initialRoute: '/splash',
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case '/splash':
@@ -68,9 +70,21 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (context) => ProfileView());
             break;
 
+          case '/select_user':
+            return MaterialPageRoute(builder: (context) => SelectUserView());
+            break;
+
           case '/generate_transaction':
             return MaterialPageRoute(
-                builder: (context) => GenerateTransactionView());
+              builder: (context) => GenerateTransactionView(
+                user: settings.arguments,
+              ),
+            );
+            break;
+
+          case '/transaction_confirmation':
+            return MaterialPageRoute(
+                builder: (context) => TransactionConfirmationView());
             break;
 
           default:

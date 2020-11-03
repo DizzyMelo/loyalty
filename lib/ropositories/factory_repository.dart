@@ -13,10 +13,9 @@ class FactoryRepository {
   }
 
   Future<dynamic> getAll(String params) async {
-    print(params);
     try {
-      var response = await dio.get(url);
-      print(response.data);
+      var response = await dio.get('$url/$params');
+
       return response.data;
     } catch (e) {
       return null;

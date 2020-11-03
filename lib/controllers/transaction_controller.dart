@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:loyalty/ropositories/transaction_repository.dart';
 import 'package:loyalty/shared/utils.dart';
 import 'package:mobx/mobx.dart';
@@ -30,8 +31,15 @@ abstract class TransactionControllerBase with Store {
   }
 
   generate(data, context) async {
-    var res = await repo.generateTransaction(data);
-    print(res);
-    return res;
+    loading = true;
+    var transaction = await repo.generateTransaction(data);
+    loading = false;
+    if (transaction == null) {
+      Utils.showMessage(
+          'Something went wrong when generating transaction!', context);
+      return;
+    }
+    Navigator.pushNamedAndRemoveUntil(
+        context, '/transaction_confirmation', (route) => false);
   }
 }

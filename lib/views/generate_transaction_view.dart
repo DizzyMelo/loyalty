@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:line_icons/line_icons.dart';
-import 'package:loyalty/components/column_animation_component.dart';
-import 'package:loyalty/components/default_textfield_component.dart';
 import 'package:loyalty/components/main_button_component.dart';
-import 'package:loyalty/components/row_company_component.dart';
 import 'package:loyalty/controllers/transaction_controller.dart';
-import 'package:loyalty/controllers/user_controller.dart';
 
-class GenerateTransactionView extends StatelessWidget {
-  final UserController _userController = UserController();
-  final TransactionController _transactionController = TransactionController();
-  TextEditingController ctrEmail =
-      TextEditingController(text: 'daniel@gmail.com');
+class GenerateTransactionView extends StatefulWidget {
+  final dynamic user;
+
+  GenerateTransactionView({@required this.user});
+  @override
+  _GenerateTransactionViewState createState() =>
+      _GenerateTransactionViewState();
+}
+
+class _GenerateTransactionViewState extends State<GenerateTransactionView> {
+  TransactionController _controller = TransactionController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,7 +21,7 @@ class GenerateTransactionView extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          title: Text('Generate Transaction'),
+          title: Text('Select User'),
           centerTitle: true,
         ),
         body: Container(
@@ -28,45 +29,22 @@ class GenerateTransactionView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              DefaultTextfieldComponent(
-                controller: ctrEmail,
-                icon: LineIcons.envelope_o,
-                showFunctionIcon: true,
-                iconFunction: LineIcons.search,
-                sendOnSubmit: false,
-                function: search,
-              ),
+              Text(widget.user['name']),
+              Text(widget.user['email']),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
-              Expanded(
-                child: Observer(builder: (_) {
-                  return ColumnAnimationComponent(
-                    widgets: List<dynamic>.from(
-                            _userController.users['data']['data'])
-                        .map(
-                          (element) => ListTile(
-                            title: Text(element['name']),
-                          ),
-                        )
-                        .toList(),
-                  );
-                }),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              MainButtonComponent(
-                title: 'Generate',
-                function: () {
-                  Map<String, dynamic> data = {
-                    "user": "5f93206f913be10866b1ac7d",
-                    "company": "5f9330cf1daf88096801b5c4"
-                  };
-
-                  _transactionController.generate(data, context);
-                },
-                loading: false,
+              Observer(
+                builder: (_) => MainButtonComponent(
+                    title: 'Generate Transaction',
+                    function: () {
+                      Map<String, dynamic> data = {
+                        "user": widget.user['_id'],
+                        "company": "5f9330cf1daf88096801b5c4"
+                      };
+                      _controller.generate(data, context);
+                    },
+                    loading: _controller.loading),
               )
             ],
           ),
@@ -74,8 +52,5 @@ class GenerateTransactionView extends StatelessWidget {
       ),
     );
   }
-
-  void search() {
-    _userController.getUsers('?email=${ctrEmail.text}', null);
-  }
 }
+//5f9330cf1daf88096801b5c4
