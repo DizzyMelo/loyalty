@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loyalty/shared/style.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+//import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class RowCompanyComponent extends StatelessWidget {
   @override
@@ -39,17 +39,17 @@ class RowCompanyComponent extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    LinearPercentIndicator(
-                      animation: true,
-                      animationDuration: 500,
-                      padding: EdgeInsets.all(0),
-                      width: 200,
-                      lineHeight: 5.0,
-                      percent: 0.5,
-                      backgroundColor: Colors.grey[300],
-                      progressColor: Style.themeColor,
-                      linearStrokeCap: LinearStrokeCap.butt,
-                    ),
+                    // LinearPercentIndicator(
+                    //   animation: true,
+                    //   animationDuration: 500,
+                    //   padding: EdgeInsets.all(0),
+                    //   width: 200,
+                    //   lineHeight: 5.0,
+                    //   percent: 0.5,
+                    //   backgroundColor: Colors.grey[300],
+                    //   progressColor: Style.themeColor,
+                    //   linearStrokeCap: LinearStrokeCap.butt,
+                    // ),
                     SizedBox(
                       height: 5,
                     ),

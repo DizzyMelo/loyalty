@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loyalty/ropositories/authentication_repository.dart';
+import 'package:loyalty/shared/SessionVariables.dart';
 import 'package:loyalty/shared/utils.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,6 +30,7 @@ abstract class AuthControllerBase with Store {
     }
     if (res['token'] != null && res['token'].toString().isNotEmpty) {
       prefs.setString('token', res['token']);
+      SessionVariables.user = res['user'];
       Navigator.pushNamedAndRemoveUntil(context, '/tabs', (route) => false);
     } else {
       Utils.showMessage('User not found!', context);

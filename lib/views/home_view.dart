@@ -4,6 +4,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:loyalty/components/column_animation_component.dart';
 import 'package:loyalty/components/row_company_component.dart';
 import 'package:loyalty/controllers/transaction_controller.dart';
+import 'package:loyalty/shared/SessionVariables.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -27,7 +28,7 @@ class _HomeViewState extends State<HomeView> {
             },
             icon: Icon(LineIcons.close),
           ),
-          title: Text('Daniel'),
+          title: Text(SessionVariables.user['name']),
           centerTitle: true,
           actions: [
             IconButton(

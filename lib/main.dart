@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:loyalty/shared/style.dart';
 import 'package:loyalty/views/detail_view.dart';
 import 'package:loyalty/views/generate_transaction_view.dart';
+import 'package:loyalty/views/perks_view.dart';
 import 'package:loyalty/views/select_user_view.dart';
 import 'package:loyalty/views/home_view.dart';
 import 'package:loyalty/views/login_view.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Style.themeColor,
         //textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
       ),
-      initialRoute: '/splash',
+      initialRoute: '/perks',
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case '/splash':
@@ -68,6 +69,10 @@ class MyApp extends StatelessWidget {
 
           case '/profile':
             return MaterialPageRoute(builder: (context) => ProfileView());
+            break;
+
+          case '/perks':
+            return MaterialPageRoute(builder: (context) => PerkView());
             break;
 
           case '/select_user':
