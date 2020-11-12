@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:loyalty/ropositories/perk_repository.dart';
 import 'package:loyalty/shared/utils.dart';
 import 'package:mobx/mobx.dart';
@@ -26,5 +27,17 @@ abstract class PerkControllerBase with Store {
       return;
     }
     return perks;
+  }
+
+  generatePerk(data, context) async {
+    loading = true;
+    dynamic res = await repo.generatePerk(data);
+    loading = false;
+    if (res != null) {
+      Utils.showMessage('Promo added successfully!', context,
+          color: Colors.teal);
+    } else {
+      Utils.showMessage('Something went wrong!', context);
+    }
   }
 }

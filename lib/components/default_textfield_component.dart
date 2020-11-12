@@ -8,6 +8,8 @@ class DefaultTextfieldComponent extends StatelessWidget {
   final bool showPreIcon;
   final bool showFunctionIcon;
   final bool sendOnSubmit;
+  final String label;
+  final TextInputType inputType;
 
   DefaultTextfieldComponent(
       {@required this.controller,
@@ -16,15 +18,18 @@ class DefaultTextfieldComponent extends StatelessWidget {
       this.iconFunction,
       this.showPreIcon = true,
       this.showFunctionIcon = false,
-      this.sendOnSubmit = true});
+      this.sendOnSubmit = true,
+      this.label = '',
+      this.inputType = TextInputType.text});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
+      keyboardType: inputType,
       onSubmitted: sendOnSubmit ? function : null,
       decoration: InputDecoration(
-        labelText: 'Email',
+        labelText: label,
         prefixIcon: showPreIcon ? Icon(icon) : null,
         suffixIcon: showFunctionIcon && iconFunction != null
             ? IconButton(

@@ -15,6 +15,8 @@ import 'package:loyalty/views/splash_view.dart';
 import 'package:loyalty/views/tabs_view.dart';
 import 'package:loyalty/views/transaction_confirmation_view.dart';
 
+import 'views/add_perk_view.dart';
+
 void main() async {
   await DotEnv().load('config.env');
   runApp(MyApp());
@@ -73,6 +75,10 @@ class MyApp extends StatelessWidget {
 
           case '/perks':
             return MaterialPageRoute(builder: (context) => PerkView());
+            break;
+
+          case '/add_perk':
+            return MaterialPageRoute(builder: (context) => AddPerkView());
             break;
 
           case '/select_user':

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:loyalty/components/column_animation_component.dart';
-import 'package:loyalty/components/row_transaction_component.dart';
+import 'package:loyalty/components/row_perk_component.dart';
 import 'package:loyalty/controllers/perk_controller.dart';
 
 class PerkView extends StatefulWidget {
@@ -20,13 +21,21 @@ class _PerkViewState extends State<PerkView> {
           backgroundColor: Colors.transparent,
           title: Text('Perks'),
           centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(LineIcons.plus),
+              onPressed: () => Navigator.pushNamed(context, '/add_perk'),
+            )
+          ],
         ),
         body: Container(
           padding: EdgeInsets.all(10),
           child: Observer(
             builder: (_) => ColumnAnimationComponent(
               widgets: List<dynamic>.from(_controller.perks['data']['data'])
-                  .map((element) => RowTransactionComponent())
+                  .map((perk) => RowPerkComponent(
+                        perk: perk,
+                      ))
                   .toList(),
             ),
           ),
