@@ -4,6 +4,7 @@ import 'package:loyalty/shared/style.dart';
 import 'package:loyalty/views/detail_view.dart';
 import 'package:loyalty/views/generate_transaction_view.dart';
 import 'package:loyalty/views/perks_view.dart';
+import 'package:loyalty/views/request_reward_view.dart';
 import 'package:loyalty/views/select_user_view.dart';
 import 'package:loyalty/views/home_view.dart';
 import 'package:loyalty/views/login_view.dart';
@@ -83,6 +84,13 @@ class MyApp extends StatelessWidget {
 
           case '/select_user':
             return MaterialPageRoute(builder: (context) => SelectUserView());
+            break;
+
+          case '/request_reward':
+            return MaterialPageRoute(
+                builder: (context) => RequestRewardView(
+                      perk: settings.arguments,
+                    ));
             break;
 
           case '/generate_transaction':

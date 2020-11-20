@@ -40,6 +40,7 @@ class _GenerateTransactionViewState extends State<GenerateTransactionView> {
                     function: () {
                       Map<String, dynamic> data = {
                         "user": widget.user['_id'],
+                        // static id
                         "company": "5f9330cf1daf88096801b5c4"
                       };
                       _controller.generate(data, context);

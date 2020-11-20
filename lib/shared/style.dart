@@ -20,5 +20,11 @@ class Style {
   static TextStyle largeText = TextStyle(color: Colors.grey[900], fontSize: 18);
   static TextStyle mediumText =
       TextStyle(color: Colors.grey[600], fontSize: 15);
+
   static TextStyle smallText = TextStyle(color: Colors.grey, fontSize: 13);
+
+  static TextStyle title = TextStyle(
+      color: Colors.grey[800], fontWeight: FontWeight.w800, fontSize: 18);
+  static TextStyle description =
+      TextStyle(color: Colors.grey[600], fontSize: 14);
 }

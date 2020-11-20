@@ -24,6 +24,7 @@ class QrCodeGeneratorView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // static id
               PrettyQr(
                 size: 200,
                 data: 'asdfan4o23i4g5o5o23ih45',

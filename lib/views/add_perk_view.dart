@@ -57,6 +57,7 @@ class _AddPerkViewState extends State<AddPerkView> {
                           Map<String, dynamic> data = {
                             "title": ctrTitle.text,
                             "description": ctrDescription.text,
+                            // static id
                             "company": "5f9330cf1daf88096801b5c4",
                             "rounds": ctrRounds.text
                           };
