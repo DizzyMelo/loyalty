@@ -25,6 +25,21 @@ mixin _$TransactionController on TransactionControllerBase, Store {
     });
   }
 
+  final _$resumeAtom = Atom(name: 'TransactionControllerBase.resume');
+
+  @override
+  dynamic get resume {
+    _$resumeAtom.reportRead();
+    return super.resume;
+  }
+
+  @override
+  set resume(dynamic value) {
+    _$resumeAtom.reportWrite(value, super.resume, () {
+      super.resume = value;
+    });
+  }
+
   final _$loadingAtom = Atom(name: 'TransactionControllerBase.loading');
 
   @override
@@ -49,10 +64,19 @@ mixin _$TransactionController on TransactionControllerBase, Store {
         .run(() => super.getTransactions(context));
   }
 
+  final _$getResumeAsyncAction =
+      AsyncAction('TransactionControllerBase.getResume');
+
+  @override
+  Future getResume(String id, dynamic context) {
+    return _$getResumeAsyncAction.run(() => super.getResume(id, context));
+  }
+
   @override
   String toString() {
     return '''
 transactions: ${transactions},
+resume: ${resume},
 loading: ${loading}
     ''';
   }

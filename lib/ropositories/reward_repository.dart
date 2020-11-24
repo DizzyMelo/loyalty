@@ -1,5 +1,4 @@
 import 'package:loyalty/ropositories/factory_repository.dart';
-import 'package:loyalty/shared/SessionVariables.dart';
 
 class RewardRepository {
   FactoryRepository _factory;
@@ -15,9 +14,7 @@ class RewardRepository {
     return _factory.getOne(id);
   }
 
-  generateReward(data) {
-    //SessionVariables.user['_id']
-    // static id
-    return _factory.create(data, params: '5f93206f913be10866b1ac7d');
+  generateReward(data, userId) {
+    return _factory.create(data, params: userId);
   }
 }

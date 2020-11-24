@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loyalty/components/main_button_component.dart';
 import 'package:loyalty/controllers/transaction_controller.dart';
+import 'package:loyalty/shared/SessionVariables.dart';
 
 class GenerateTransactionView extends StatefulWidget {
   final dynamic user;
@@ -40,8 +41,8 @@ class _GenerateTransactionViewState extends State<GenerateTransactionView> {
                     function: () {
                       Map<String, dynamic> data = {
                         "user": widget.user['_id'],
-                        // static id
-                        "company": "5f9330cf1daf88096801b5c4"
+                        "company": SessionVariables.user['_id'],
+                        "companyName": SessionVariables.user['name']
                       };
                       _controller.generate(data, context);
                     },

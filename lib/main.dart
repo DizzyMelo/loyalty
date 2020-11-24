@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:loyalty/shared/style.dart';
-import 'package:loyalty/views/detail_view.dart';
+import 'package:loyalty/views/rewards_view.dart';
 import 'package:loyalty/views/generate_transaction_view.dart';
+import 'package:loyalty/views/home_company_view.dart';
 import 'package:loyalty/views/perks_view.dart';
 import 'package:loyalty/views/request_reward_view.dart';
 import 'package:loyalty/views/select_user_view.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Style.themeColor,
         //textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
       ),
-      initialRoute: '/perks',
+      initialRoute: '/splash',
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case '/splash':
@@ -53,6 +54,10 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (context) => HomeView());
             break;
 
+          case '/home_company':
+            return MaterialPageRoute(builder: (context) => HomeCompanyView());
+            break;
+
           case '/qr_code_generator':
             return MaterialPageRoute(
                 builder: (context) => QrCodeGeneratorView());
@@ -62,8 +67,11 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (context) => QrCodeScanner());
             break;
 
-          case '/detail':
-            return MaterialPageRoute(builder: (context) => DetailView());
+          case '/rewards':
+            return MaterialPageRoute(
+                builder: (context) => RewardsView(
+                      company: settings.arguments,
+                    ));
             break;
 
           case '/tabs':

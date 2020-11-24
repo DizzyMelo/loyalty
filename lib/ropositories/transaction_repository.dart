@@ -10,6 +10,10 @@ class TransactionRepository {
     return _factory.getAll(params);
   }
 
+  getResume(String params) {
+    return _factory.getAll(params);
+  }
+
   generateTransaction(data) {
     return _factory.create(data);
   }

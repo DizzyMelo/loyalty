@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:loyalty/components/column_animation_component.dart';
-import 'package:loyalty/components/row_company_component.dart';
-import 'package:loyalty/controllers/transaction_controller.dart';
+import 'package:loyalty/components/main_button_component.dart';
 import 'package:loyalty/shared/SessionVariables.dart';
 
-class HomeView extends StatefulWidget {
+class HomeCompanyView extends StatefulWidget {
   @override
-  _HomeViewState createState() => _HomeViewState();
+  _HomeCompanyViewState createState() => _HomeCompanyViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
-  TransactionController _controller = TransactionController();
-
+class _HomeCompanyViewState extends State<HomeCompanyView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,7 +23,8 @@ class _HomeViewState extends State<HomeView> {
             },
             icon: Icon(LineIcons.close),
           ),
-          title: Text(SessionVariables.user['name']),
+          title: Text('Extreme'),
+          //title: Text(SessionVariables.user['name']),
           centerTitle: true,
           // actions: [
           //   IconButton(
@@ -41,13 +37,14 @@ class _HomeViewState extends State<HomeView> {
         ),
         body: Container(
           padding: EdgeInsets.all(10),
-          child: Observer(builder: (_) {
-            return ColumnAnimationComponent(
-              widgets: List<dynamic>.from(_controller.resume['transactions'])
-                  .map((element) => RowCompanyComponent(resume: element))
-                  .toList(),
-            );
-          }),
+          child: Center(
+            child: MainButtonComponent(
+                title: 'New Transaction',
+                function: () {
+                  Navigator.pushNamed(context, '/select_user');
+                },
+                loading: false),
+          ),
         ),
       ),
     );
@@ -57,6 +54,5 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller.getResume(SessionVariables.user['_id'], context);
   }
 }

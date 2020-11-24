@@ -16,6 +16,9 @@ abstract class TransactionControllerBase with Store {
   };
 
   @observable
+  dynamic resume = {"transactions": []};
+
+  @observable
   bool loading = false;
 
   @action
@@ -28,6 +31,18 @@ abstract class TransactionControllerBase with Store {
       return;
     }
     return transactions;
+  }
+
+  @action
+  getResume(String id, context) async {
+    loading = true;
+    resume = await repo.getResume('$id/resume');
+    loading = false;
+    if (resume == null) {
+      Utils.showMessage('No transaction found!', context);
+      return;
+    }
+    return resume;
   }
 
   generate(data, context) async {

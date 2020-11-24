@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:loyalty/shared/SessionVariables.dart';
 import 'package:loyalty/shared/style.dart';
-import 'package:loyalty/views/detail_view.dart';
+import 'package:loyalty/views/rewards_view.dart';
+import 'package:loyalty/views/home_company_view.dart';
 import 'package:loyalty/views/home_view.dart';
 import 'package:loyalty/views/profile_view.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -13,17 +15,21 @@ class TabsView extends StatefulWidget {
 
 class _TabsViewState extends State<TabsView> {
   var _selectedTab = _SelectedTab.home;
-  Widget screen = HomeView();
+  Widget screen = SessionVariables.user['role'] == 'company'
+      ? HomeCompanyView()
+      : HomeView();
 
   void _handleIndexChanged(int i) {
     setState(() {
       _selectedTab = _SelectedTab.values[i];
       switch (i) {
         case 0:
-          screen = HomeView();
+          screen = SessionVariables.user['role'] == 'company'
+              ? HomeCompanyView()
+              : HomeView();
           break;
         case 1:
-          screen = DetailView();
+          screen = RewardsView();
           break;
         case 2:
           screen = ProfileView();
@@ -76,6 +82,12 @@ class _TabsViewState extends State<TabsView> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
   }
 }
 

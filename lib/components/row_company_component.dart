@@ -3,11 +3,14 @@ import 'package:loyalty/shared/style.dart';
 //import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class RowCompanyComponent extends StatelessWidget {
+  final dynamic resume;
+
+  RowCompanyComponent({@required this.resume});
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, '/detail');
+        Navigator.pushNamed(context, '/rewards', arguments: resume['_id']);
       },
       child: Padding(
         padding: EdgeInsets.all(10),
@@ -33,12 +36,10 @@ class RowCompanyComponent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'McDonalds',
+                      resume['_id']['name'],
                       style: Style.largeText,
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+
                     // LinearPercentIndicator(
                     //   animation: true,
                     //   animationDuration: 500,
@@ -54,7 +55,7 @@ class RowCompanyComponent extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      '5/10',
+                      '${resume['total']} purchases',
                       style: Style.smallText,
                     ),
                   ],
