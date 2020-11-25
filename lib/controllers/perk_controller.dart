@@ -18,9 +18,9 @@ abstract class PerkControllerBase with Store {
   bool loading = false;
 
   @action
-  getPerks(context) async {
+  getPerks(String id, context) async {
     loading = true;
-    perks = await repo.getPerks('?company=5f9330cf1daf88096801b5c4');
+    perks = await repo.getPerks('?company=$id');
     loading = false;
     if (perks == null) {
       Utils.showMessage('No promo found!', context);

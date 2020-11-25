@@ -6,6 +6,7 @@ import 'package:loyalty/views/generate_transaction_view.dart';
 import 'package:loyalty/views/home_company_view.dart';
 import 'package:loyalty/views/perks_view.dart';
 import 'package:loyalty/views/request_reward_view.dart';
+import 'package:loyalty/views/select_company_view.dart';
 import 'package:loyalty/views/select_user_view.dart';
 import 'package:loyalty/views/home_view.dart';
 import 'package:loyalty/views/login_view.dart';
@@ -16,6 +17,7 @@ import 'package:loyalty/views/signup_view.dart';
 import 'package:loyalty/views/splash_view.dart';
 import 'package:loyalty/views/tabs_view.dart';
 import 'package:loyalty/views/transaction_confirmation_view.dart';
+import 'package:loyalty/views/transactions_view.dart';
 
 import 'views/add_perk_view.dart';
 
@@ -74,6 +76,13 @@ class MyApp extends StatelessWidget {
                     ));
             break;
 
+          case '/transactions':
+            return MaterialPageRoute(
+                builder: (context) => TransactionsView(
+                      company: settings.arguments,
+                    ));
+            break;
+
           case '/tabs':
             return MaterialPageRoute(builder: (context) => TabsView());
             break;
@@ -83,7 +92,10 @@ class MyApp extends StatelessWidget {
             break;
 
           case '/perks':
-            return MaterialPageRoute(builder: (context) => PerkView());
+            return MaterialPageRoute(
+                builder: (context) => PerkView(
+                      company: settings.arguments,
+                    ));
             break;
 
           case '/add_perk':
@@ -92,6 +104,10 @@ class MyApp extends StatelessWidget {
 
           case '/select_user':
             return MaterialPageRoute(builder: (context) => SelectUserView());
+            break;
+
+          case '/select_company':
+            return MaterialPageRoute(builder: (context) => SelectCompanyView());
             break;
 
           case '/request_reward':

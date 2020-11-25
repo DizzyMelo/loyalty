@@ -59,9 +59,9 @@ mixin _$TransactionController on TransactionControllerBase, Store {
       AsyncAction('TransactionControllerBase.getTransactions');
 
   @override
-  Future getTransactions(dynamic context) {
+  Future getTransactions(dynamic context, String company) {
     return _$getTransactionsAsyncAction
-        .run(() => super.getTransactions(context));
+        .run(() => super.getTransactions(context, company));
   }
 
   final _$getResumeAsyncAction =

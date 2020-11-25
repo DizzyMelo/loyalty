@@ -42,8 +42,8 @@ mixin _$PerkController on PerkControllerBase, Store {
   final _$getPerksAsyncAction = AsyncAction('PerkControllerBase.getPerks');
 
   @override
-  Future getPerks(dynamic context) {
-    return _$getPerksAsyncAction.run(() => super.getPerks(context));
+  Future getPerks(String id, dynamic context) {
+    return _$getPerksAsyncAction.run(() => super.getPerks(id, context));
   }
 
   @override

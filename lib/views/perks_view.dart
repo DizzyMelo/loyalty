@@ -6,6 +6,9 @@ import 'package:loyalty/components/row_perk_component.dart';
 import 'package:loyalty/controllers/perk_controller.dart';
 
 class PerkView extends StatefulWidget {
+  final dynamic company;
+
+  PerkView({@required this.company});
   @override
   _PerkViewState createState() => _PerkViewState();
 }
@@ -48,6 +51,6 @@ class _PerkViewState extends State<PerkView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller.getPerks(context);
+    _controller.getPerks(widget.company['_id'], context);
   }
 }

@@ -21,10 +21,9 @@ abstract class RewardControllerBase with Store {
   @action
   getRewards(context) async {
     loading = true;
-    print(SessionVariables.user['_id']);
     rewards = await repo.getRewards('?user=${SessionVariables.user['_id']}');
     loading = false;
-    print(rewards);
+
     if (rewards == null) {
       Utils.showMessage('No reward found!', context);
       return;

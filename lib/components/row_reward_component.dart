@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class RowRewardComponent extends StatelessWidget {
+  final dynamic reward;
+
+  RowRewardComponent({@required this.reward});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,8 +26,11 @@ class RowRewardComponent extends StatelessWidget {
                 ),
               ],
             ),
-            title: Text('McDonalds'),
-            trailing: Text('20/10/2020'),
+            title: Text(
+                '${reward['perk']['company']['name']}: ${reward['perk']['title']}'),
+            subtitle: Text(reward['perk']['description']),
+            //trailing: Text(reward['perk']['company']['name']),
+            //trailing: Text('20/10/2020'),
           ),
         ),
       ),

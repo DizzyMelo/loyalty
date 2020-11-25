@@ -1,5 +1,6 @@
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:line_icons/line_icons.dart';
 
 class Utils {
@@ -16,5 +17,10 @@ class Utils {
         color: Colors.white,
       ),
     )..show(context);
+  }
+
+  static formatDate(DateTime date) {
+    final f = new DateFormat('MM/dd/yyyy hh:mm');
+    return f.format(date);
   }
 }

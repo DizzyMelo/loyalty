@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:loyalty/shared/utils.dart';
 
 class RowTransactionComponent extends StatelessWidget {
+  final dynamic transaction;
+
+  RowTransactionComponent({this.transaction});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,8 +28,9 @@ class RowTransactionComponent extends StatelessWidget {
                 ),
               ],
             ),
-            title: Text('McDonalds'),
-            trailing: Text('20/10/2020'),
+            title: Text(transaction['companyName']),
+            trailing:
+                Text(Utils.formatDate(DateTime.parse(transaction['date']))),
           ),
         ),
       ),

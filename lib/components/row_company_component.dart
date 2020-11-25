@@ -10,7 +10,7 @@ class RowCompanyComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, '/rewards', arguments: resume['_id']);
+        Navigator.pushNamed(context, '/transactions', arguments: resume['_id']);
       },
       child: Padding(
         padding: EdgeInsets.all(10),

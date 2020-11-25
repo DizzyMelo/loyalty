@@ -13,7 +13,6 @@ class FactoryRepository {
   }
 
   Future<dynamic> getAll(String params) async {
-    print('$url/$params');
     try {
       var response = await dio.get('$url/$params');
 
@@ -35,7 +34,6 @@ class FactoryRepository {
 
   Future<dynamic> create(Map<String, dynamic> data,
       {String params = ''}) async {
-    print('$url/$params');
     try {
       var response = await dio.post('$url/$params', data: data);
       return response.data;
