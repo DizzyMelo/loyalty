@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.loyalty">
+    package="br.com.dicedev.loyalty">
    <application
         android:label="loyalty"
         android:icon="@mipmap/ic_launcher">

@@ -11,10 +11,9 @@ class SignupView extends StatefulWidget {
 }
 
 class _SignupViewState extends State<SignupView> {
-  TextEditingController ctrName = TextEditingController(text: "Daniel Melo");
-  TextEditingController ctrEmail =
-      TextEditingController(text: "daniel@gmail.com");
-  TextEditingController ctrPassword = TextEditingController(text: "1234567");
+  TextEditingController ctrName = TextEditingController();
+  TextEditingController ctrEmail = TextEditingController();
+  TextEditingController ctrPassword = TextEditingController();
 
   int roleIndex = 0;
 

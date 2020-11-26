@@ -1,4 +1,4 @@
-package com.example.loyalty
+package br.com.dicedev.loyalty
 
 import io.flutter.embedding.android.FlutterActivity
 
