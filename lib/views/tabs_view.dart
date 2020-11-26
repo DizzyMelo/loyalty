@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:loyalty/shared/SessionVariables.dart';
 import 'package:loyalty/shared/style.dart';
+import 'package:loyalty/views/perks_view.dart';
 import 'package:loyalty/views/rewards_view.dart';
 import 'package:loyalty/views/home_company_view.dart';
 import 'package:loyalty/views/home_view.dart';
@@ -29,7 +30,9 @@ class _TabsViewState extends State<TabsView> {
               : HomeView();
           break;
         case 1:
-          screen = RewardsView();
+          screen = SessionVariables.user['role'] == 'company'
+              ? PerkView()
+              : RewardsView();
           break;
         case 2:
           screen = ProfileView();

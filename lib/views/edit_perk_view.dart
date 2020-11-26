@@ -6,12 +6,15 @@ import 'package:loyalty/components/main_button_component.dart';
 import 'package:loyalty/controllers/perk_controller.dart';
 import 'package:loyalty/shared/SessionVariables.dart';
 
-class AddPerkView extends StatefulWidget {
+class EditPerkView extends StatefulWidget {
+  final dynamic perk;
+
+  EditPerkView({@required this.perk});
   @override
-  _AddPerkViewState createState() => _AddPerkViewState();
+  _EditPerkViewState createState() => _EditPerkViewState();
 }
 
-class _AddPerkViewState extends State<AddPerkView> {
+class _EditPerkViewState extends State<EditPerkView> {
   PerkController _controller = PerkController();
 
   TextEditingController ctrTitle = TextEditingController();
@@ -24,7 +27,7 @@ class _AddPerkViewState extends State<AddPerkView> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          title: Text('New Promo'),
+          title: Text('Edit Promo'),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -53,17 +56,17 @@ class _AddPerkViewState extends State<AddPerkView> {
                 ),
                 Observer(
                     builder: (_) => MainButtonComponent(
-                        title: 'Add',
+                        title: 'Edit',
                         function: () {
                           Map<String, dynamic> data = {
                             "title": ctrTitle.text,
                             "description": ctrDescription.text,
-                            // static id
                             "company": SessionVariables.user['_id'],
                             "rounds": ctrRounds.text
                           };
 
-                          _controller.generatePerk(data, context);
+                          _controller.editPerk(
+                              data, widget.perk['_id'], context);
                         },
                         loading: _controller.loading))
               ],
@@ -72,5 +75,14 @@ class _AddPerkViewState extends State<AddPerkView> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ctrTitle.text = widget.perk['title'];
+    ctrDescription.text = widget.perk['description'];
+    ctrRounds.text = widget.perk['rounds'].toString();
   }
 }

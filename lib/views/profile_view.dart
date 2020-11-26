@@ -14,7 +14,12 @@ class ProfileView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
-                minRadius: 45,
+                child: ClipOval(
+                  child: Image.asset(SessionVariables.user['role'] == 'company'
+                      ? 'assets/shop.png'
+                      : 'assets/alien.png'),
+                ),
+                radius: 45,
               ),
               SizedBox(
                 height: 20,
@@ -34,10 +39,47 @@ class ProfileView extends StatelessWidget {
                 leading: Icon(LineIcons.flag_o, color: Style.themeColor),
                 title: Text(SessionVariables.user['role']),
               ),
+              ListTile(
+                onTap: () => _settingModalBottomSheet(context),
+                leading: Icon(LineIcons.arrow_right, color: Style.themeColor),
+                title: Text('Logout'),
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+              padding: EdgeInsets.all(10),
+              height: 150,
+              child: Column(
+                children: [
+                  Text(
+                    'Are you sure you want to logout?',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  ListTile(
+                      title: Center(
+                    child: Text(
+                      'Yes',
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  )),
+                  ListTile(
+                      title: Center(
+                    child: Text(
+                      'No',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  )),
+                ],
+              ));
+        });
   }
 }

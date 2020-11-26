@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:loyalty/shared/style.dart';
+import 'package:loyalty/views/edit_perk_view.dart';
 import 'package:loyalty/views/rewards_view.dart';
 import 'package:loyalty/views/generate_transaction_view.dart';
 import 'package:loyalty/views/home_company_view.dart';
@@ -102,6 +103,13 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (context) => AddPerkView());
             break;
 
+          case '/edit_perk':
+            return MaterialPageRoute(
+                builder: (context) => EditPerkView(
+                      perk: settings.arguments,
+                    ));
+            break;
+
           case '/select_user':
             return MaterialPageRoute(builder: (context) => SelectUserView());
             break;
@@ -127,7 +135,9 @@ class MyApp extends StatelessWidget {
 
           case '/transaction_confirmation':
             return MaterialPageRoute(
-                builder: (context) => TransactionConfirmationView());
+                builder: (context) => TransactionConfirmationView(
+                      transaction: settings.arguments,
+                    ));
             break;
 
           default:

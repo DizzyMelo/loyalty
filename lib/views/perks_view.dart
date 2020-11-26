@@ -4,11 +4,12 @@ import 'package:line_icons/line_icons.dart';
 import 'package:loyalty/components/column_animation_component.dart';
 import 'package:loyalty/components/row_perk_component.dart';
 import 'package:loyalty/controllers/perk_controller.dart';
+import 'package:loyalty/shared/SessionVariables.dart';
 
 class PerkView extends StatefulWidget {
   final dynamic company;
 
-  PerkView({@required this.company});
+  PerkView({this.company});
   @override
   _PerkViewState createState() => _PerkViewState();
 }
@@ -22,14 +23,16 @@ class _PerkViewState extends State<PerkView> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          title: Text('Perks'),
+          title: Text('Promos'),
           centerTitle: true,
-          actions: [
-            IconButton(
-              icon: Icon(LineIcons.plus),
-              onPressed: () => Navigator.pushNamed(context, '/add_perk'),
-            )
-          ],
+          actions: SessionVariables.user['role'] == 'company'
+              ? [
+                  IconButton(
+                    icon: Icon(LineIcons.plus),
+                    onPressed: () => Navigator.pushNamed(context, '/add_perk'),
+                  )
+                ]
+              : [],
         ),
         body: Container(
           padding: EdgeInsets.all(10),
@@ -51,6 +54,10 @@ class _PerkViewState extends State<PerkView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller.getPerks(widget.company['_id'], context);
+    _controller.getPerks(
+        widget.company == null
+            ? SessionVariables.user['_id']
+            : widget.company['_id'],
+        context);
   }
 }

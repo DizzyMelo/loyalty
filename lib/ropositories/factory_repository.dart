@@ -41,4 +41,14 @@ class FactoryRepository {
       return null;
     }
   }
+
+  Future<dynamic> edit(Map<String, dynamic> data, String id,
+      {String params = ''}) async {
+    try {
+      var response = await dio.patch('$url/$id/$params', data: data);
+      return response.data;
+    } catch (e) {
+      return null;
+    }
+  }
 }

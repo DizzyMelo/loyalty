@@ -3,6 +3,9 @@ import 'package:line_icons/line_icons.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 
 class TransactionConfirmationView extends StatefulWidget {
+  final dynamic transaction;
+
+  TransactionConfirmationView({@required this.transaction});
   @override
   _TransactionConfirmationViewState createState() =>
       _TransactionConfirmationViewState();
@@ -39,7 +42,7 @@ class _TransactionConfirmationViewState
               Center(
                 child: PrettyQr(
                   size: 140,
-                  data: 'asdfan4o23i4g5o5o23ih45',
+                  data: widget.transaction['_id'],
                   roundEdges: true,
                   //errorCorrectLevel: QrErrorCorrectLevel.M,
                   elementColor: Colors.white,

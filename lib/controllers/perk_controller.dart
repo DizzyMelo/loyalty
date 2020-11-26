@@ -40,4 +40,16 @@ abstract class PerkControllerBase with Store {
       Utils.showMessage('Something went wrong!', context);
     }
   }
+
+  editPerk(Map<String, dynamic> data, String id, BuildContext context) async {
+    loading = true;
+    dynamic res = await repo.editPerk(data, id);
+    loading = false;
+    if (res != null) {
+      Utils.showMessage('Document edited successfully!', context,
+          color: Colors.teal);
+    } else {
+      Utils.showMessage('Something went wrong!', context);
+    }
+  }
 }

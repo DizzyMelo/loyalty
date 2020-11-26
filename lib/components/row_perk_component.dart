@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loyalty/shared/SessionVariables.dart';
 
 class RowPerkComponent extends StatelessWidget {
   final dynamic perk;
@@ -7,8 +8,12 @@ class RowPerkComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () =>
-            Navigator.pushNamed(context, '/request_reward', arguments: perk),
+        onTap: () => Navigator.pushNamed(
+            context,
+            SessionVariables.user['role'] == 'company'
+                ? '/edit_perk'
+                : '/request_reward',
+            arguments: perk),
         child: Padding(
           padding: EdgeInsets.only(bottom: 10),
           child: Material(

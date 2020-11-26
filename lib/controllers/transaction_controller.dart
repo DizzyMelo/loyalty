@@ -57,6 +57,7 @@ abstract class TransactionControllerBase with Store {
       return;
     }
     Navigator.pushNamedAndRemoveUntil(
-        context, '/transaction_confirmation', (route) => false);
+        context, '/transaction_confirmation', (route) => false,
+        arguments: transaction['data']['data']);
   }
 }

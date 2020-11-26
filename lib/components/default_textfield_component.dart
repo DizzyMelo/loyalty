@@ -11,16 +11,17 @@ class DefaultTextfieldComponent extends StatelessWidget {
   final String label;
   final TextInputType inputType;
 
-  DefaultTextfieldComponent(
-      {@required this.controller,
-      @required this.icon,
-      this.function,
-      this.iconFunction,
-      this.showPreIcon = true,
-      this.showFunctionIcon = false,
-      this.sendOnSubmit = true,
-      this.label = '',
-      this.inputType = TextInputType.text});
+  DefaultTextfieldComponent({
+    @required this.controller,
+    @required this.icon,
+    this.function,
+    this.iconFunction,
+    this.showPreIcon = true,
+    this.showFunctionIcon = false,
+    this.sendOnSubmit = true,
+    this.label = '',
+    this.inputType = TextInputType.text,
+  });
 
   @override
   Widget build(BuildContext context) {

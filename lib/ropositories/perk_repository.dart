@@ -17,4 +17,8 @@ class PerkRepository {
   generatePerk(data) {
     return _factory.create(data);
   }
+
+  editPerk(data, id) {
+    return _factory.edit(data, id);
+  }
 }
