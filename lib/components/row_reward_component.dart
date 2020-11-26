@@ -17,6 +17,8 @@ class RowRewardComponent extends StatelessWidget {
               //color: Colors.greenAccent,
               borderRadius: BorderRadius.circular(5)),
           child: ListTile(
+            onTap: () => //print(reward),
+                Navigator.pushNamed(context, '/reward_id', arguments: reward),
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

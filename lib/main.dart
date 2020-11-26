@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:loyalty/shared/style.dart';
 import 'package:loyalty/views/edit_perk_view.dart';
+import 'package:loyalty/views/grant_reward_view.dart';
+import 'package:loyalty/views/reward_id_view.dart';
 import 'package:loyalty/views/rewards_view.dart';
 import 'package:loyalty/views/generate_transaction_view.dart';
 import 'package:loyalty/views/home_company_view.dart';
@@ -36,7 +39,7 @@ class MyApp extends StatelessWidget {
       title: 'Loy',
       theme: ThemeData(
         primarySwatch: Style.themeColor,
-        //textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
+        textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
       ),
       initialRoute: '/splash',
       onGenerateRoute: (settings) {
@@ -67,7 +70,17 @@ class MyApp extends StatelessWidget {
             break;
 
           case '/qr_code_scanner':
-            return MaterialPageRoute(builder: (context) => QrCodeScanner());
+            return MaterialPageRoute(
+                builder: (context) => QrCodeScanner(
+                      page: settings.arguments,
+                    ));
+            break;
+
+          case '/grant_reward':
+            return MaterialPageRoute(
+                builder: (context) => GrantRewardView(
+                      id: settings.arguments,
+                    ));
             break;
 
           case '/rewards':
@@ -122,6 +135,13 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(
                 builder: (context) => RequestRewardView(
                       perk: settings.arguments,
+                    ));
+            break;
+
+          case '/reward_id':
+            return MaterialPageRoute(
+                builder: (context) => RewardIdView(
+                      reward: settings.arguments,
                     ));
             break;
 

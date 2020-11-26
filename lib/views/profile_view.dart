@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:loyalty/controllers/auth_controller.dart';
 import 'package:loyalty/shared/SessionVariables.dart';
 import 'package:loyalty/shared/style.dart';
 
 class ProfileView extends StatelessWidget {
+  final AuthController _controller = AuthController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -65,19 +67,21 @@ class ProfileView extends StatelessWidget {
                     style: TextStyle(fontSize: 15),
                   ),
                   ListTile(
+                      onTap: () => _controller.logout(context),
                       title: Center(
-                    child: Text(
-                      'Yes',
-                      style: TextStyle(color: Colors.blue),
-                    ),
-                  )),
+                        child: Text(
+                          'Yes',
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                      )),
                   ListTile(
+                      onTap: () => Navigator.pop(context),
                       title: Center(
-                    child: Text(
-                      'No',
-                      style: TextStyle(color: Colors.red),
-                    ),
-                  )),
+                        child: Text(
+                          'No',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      )),
                 ],
               ));
         });

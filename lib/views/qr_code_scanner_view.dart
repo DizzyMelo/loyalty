@@ -9,8 +9,10 @@ const frontCamera = 'FRONT CAMERA';
 const backCamera = 'BACK CAMERA';
 
 class QrCodeScanner extends StatefulWidget {
+  final String page;
   const QrCodeScanner({
     Key key,
+    @required this.page,
   }) : super(key: key);
 
   @override
@@ -71,9 +73,7 @@ class _QrCodeScannerState extends State<QrCodeScanner> {
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        qrText = scanData;
-      });
+      Navigator.pushNamed(context, widget.page, arguments: scanData);
     });
   }
 

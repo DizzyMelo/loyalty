@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:loyalty/ropositories/authentication_repository.dart';
 import 'package:loyalty/shared/SessionVariables.dart';
 import 'package:loyalty/shared/utils.dart';
@@ -59,6 +60,32 @@ abstract class AuthControllerBase with Store {
     } else {
       Utils.showMessage('Something went wrong when adding the user!', context);
     }
+  }
+
+  @action
+  authLoggedUser(BuildContext context) async {
+    await Future.delayed(Duration(milliseconds: 1500));
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.getString('token') == null ||
+        prefs.getString('token').isEmpty ||
+        JwtDecoder.isExpired(prefs.getString('token'))) {
+      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+      return;
+    }
+    dynamic user =
+        await auth.getUser(JwtDecoder.decode(prefs.getString('token'))['id']);
+    SessionVariables.user = user['data']['data'];
+    Navigator.pushNamedAndRemoveUntil(context, '/tabs', (route) => false);
+  }
+
+  @action
+  logout(BuildContext context) async {
+    Navigator.pop(context);
+    Utils.showMessage('Hope we see you soon!', context, color: Colors.teal);
+    await Future.delayed(Duration(milliseconds: 1500));
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('token', null);
+    Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
   }
 
   @action

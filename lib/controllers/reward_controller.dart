@@ -21,7 +21,8 @@ abstract class RewardControllerBase with Store {
   @action
   getRewards(context) async {
     loading = true;
-    rewards = await repo.getRewards('?user=${SessionVariables.user['_id']}');
+    rewards = await repo
+        .getRewards('?user=${SessionVariables.user['_id']}&available=true');
     loading = false;
 
     if (rewards == null) {
@@ -37,6 +38,18 @@ abstract class RewardControllerBase with Store {
     loading = false;
     if (res != null) {
       Utils.showMessage('Promo added successfully!', context,
+          color: Colors.teal);
+    } else {
+      Utils.showMessage('Something went wrong!', context);
+    }
+  }
+
+  editReward(Map<String, dynamic> data, String id, BuildContext context) async {
+    loading = true;
+    dynamic res = await repo.editReward(data, id);
+    loading = false;
+    if (res != null) {
+      Utils.showMessage('Document edited successfully!', context,
           color: Colors.teal);
     } else {
       Utils.showMessage('Something went wrong!', context);

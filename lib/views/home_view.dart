@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:loyalty/components/column_animation_component.dart';
 import 'package:loyalty/components/row_company_component.dart';
 import 'package:loyalty/controllers/transaction_controller.dart';
@@ -21,23 +20,8 @@ class _HomeViewState extends State<HomeView> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/login', (route) => false);
-            },
-            icon: Icon(LineIcons.close),
-          ),
           title: Text(SessionVariables.user['name']),
           centerTitle: true,
-          // actions: [
-          //   IconButton(
-          //     onPressed: () {
-          //       Navigator.pushNamed(context, '/select_user');
-          //     },
-          //     icon: Icon(Icons.add),
-          //   )
-          // ],
         ),
         body: Container(
           padding: EdgeInsets.all(10),

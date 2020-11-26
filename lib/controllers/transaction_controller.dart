@@ -26,7 +26,7 @@ abstract class TransactionControllerBase with Store {
   getTransactions(context, String company) async {
     loading = true;
     transactions = await repo.getTransactions(
-        '?user=${SessionVariables.user['_id']}&company=$company');
+        '?user=${SessionVariables.user['_id']}&company=$company&pending=true');
     loading = false;
     if (transactions == null) {
       Utils.showMessage('No transaction found!', context);

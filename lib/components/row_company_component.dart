@@ -27,7 +27,12 @@ class RowCompanyComponent extends StatelessWidget {
             ),
             child: Row(
               children: [
-                CircleAvatar(),
+                CircleAvatar(
+                  radius: 20,
+                  child: ClipOval(
+                    child: Image.asset('assets/shop.png'),
+                  ),
+                ),
                 SizedBox(
                   width: 10,
                 ),
@@ -39,23 +44,11 @@ class RowCompanyComponent extends StatelessWidget {
                       resume['_id']['name'],
                       style: Style.largeText,
                     ),
-
-                    // LinearPercentIndicator(
-                    //   animation: true,
-                    //   animationDuration: 500,
-                    //   padding: EdgeInsets.all(0),
-                    //   width: 200,
-                    //   lineHeight: 5.0,
-                    //   percent: 0.5,
-                    //   backgroundColor: Colors.grey[300],
-                    //   progressColor: Style.themeColor,
-                    //   linearStrokeCap: LinearStrokeCap.butt,
-                    // ),
                     SizedBox(
                       height: 5,
                     ),
                     Text(
-                      '${resume['total']} purchases',
+                      '${resume['total']} transactions',
                       style: Style.smallText,
                     ),
                   ],

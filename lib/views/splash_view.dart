@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loyalty/controllers/auth_controller.dart';
 
 class SplashView extends StatefulWidget {
   @override
@@ -6,6 +7,7 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+  AuthController _controller = AuthController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,14 +25,9 @@ class _SplashViewState extends State<SplashView> {
     );
   }
 
-  navigate() async {
-    await Future.delayed(Duration(milliseconds: 1500));
-    Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
-  }
-
   @override
   void initState() {
     super.initState();
-    this.navigate();
+    _controller.authLoggedUser(context);
   }
 }
