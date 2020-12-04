@@ -49,7 +49,8 @@ class _RequestRewardViewState extends State<RequestRewardView> {
                     title: 'Request Reward',
                     function: () {
                       Map<String, dynamic> data = {
-                        "perkId": widget.perk['_id']
+                        "perkId": widget.perk['_id'],
+                        "company": widget.perk['company'],
                       };
                       _controller.generateReward(data, context);
                     },

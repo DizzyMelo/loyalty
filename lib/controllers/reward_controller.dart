@@ -40,7 +40,9 @@ abstract class RewardControllerBase with Store {
       Utils.showMessage('Promo added successfully!', context,
           color: Colors.teal);
     } else {
-      Utils.showMessage('Something went wrong!', context);
+      Utils.showMessage(
+          'Something went wrong! Probably you don\'t have transactions enough',
+          context);
     }
   }
 
